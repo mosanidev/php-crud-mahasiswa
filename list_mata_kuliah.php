@@ -12,6 +12,12 @@
             </select>
         data</p>
 
+        <?php 
+            if ($user_id) {
+                echo "<a class='btn-add' href='index.php?page=tambah_mata_kuliah'>Tambah</a>";
+            }
+        ?>
+
         <table>
             <tr>
                 <th>No</th>

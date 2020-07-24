@@ -99,7 +99,7 @@ div.content-button a:hover{
     background-color: #1dd388;
 }
 
-div#content-form, div#content-show {
+div#content-form {
     margin: 8% auto;
     width: 50%;
     height: 50%;
@@ -108,7 +108,7 @@ div#content-form, div#content-show {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-div#content-list {
+div#content-list, div#content-show {
     background-color: #FFF;
     border-radius: 9px;
     margin: 20px;
@@ -172,14 +172,14 @@ form button:hover {
     padding: 20px;
 }
 
-.content-list-table table {
+.content-list-table table, .info-table table {
     margin-top: 20px;
     width: 100%;
     text-align: left;
 /*     border-collapse: collapse; */
 }
 
-.content-list-table th {
+.content-list-table th, .info-table th {
     background-color: #000;
     color: white;
     padding: 5px;
@@ -187,16 +187,16 @@ form button:hover {
 
 }
 
-.content-list-table td {
+.content-list-table td, .info-table td {
     border-left: 1.5px solid black;
     padding-left: 7px;
 }
 
-.content-list-table tr:nth-child(odd) {
+.content-list-table tr:nth-child(odd), .info-table tr:nth-child(odd) {
   background-color: #dddddd;
 }
 
-.content-list-table td.last-cell {
+.content-list-table td.last-cell, .info-table td.last-cell {
     border-right: 1.5px solid black;
     width: 18%;
     text-align: center;
@@ -238,4 +238,50 @@ a.btn-add:hover {
 
 .content-list-table td.last-cell a {
     margin-right: 8px;
+}
+
+.content-show-data .group-info {
+    margin-bottom: 8px;
+}
+
+.content-show-data .group-info p:nth-child(1) {
+    display: inline-block;
+    width: 200px;
+    margin-right: 12px;
+}
+
+.content-show-data .group-info p:nth-child(2) {
+    display: inline;
+}
+
+.info-header h3 {
+    padding: 5px 0px;
+}
+
+.info-header {
+    margin: 15px 0px;
+}
+
+.info-table table {
+    width: 99%;
+    margin: 0 auto;
+}
+
+.tampil-jumlah-data {
+    display:inline-block;
+    /* margin: 5px 1px; */
+    float:left;
+    padding: 9px;
+}
+
+a.btn-add2 {
+    background-color: #000;
+    border-radius: 10px;
+    padding: 7px;
+    text-decoration: none;
+    color: #fff;
+    margin: 5px 8px;
+    display: inline-block;
+    float: right;
+    font-size: 14px;
 }

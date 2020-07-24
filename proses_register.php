@@ -17,7 +17,7 @@
 
     $insert_user = $conn->query("INSERT INTO user (email, password, tipe) VALUES ('$email', '$salted_password', 'mahasiswa') ");
 
-    $insert_mahasiswa = $conn->query("INSERT INTO mahasiswa (nrp, nama, alamat, tanggal_lahir, kota_tinggal, kota_lahir, phone, status, id_user) VALUES ('$nrp', '$nama', '$alamat', '$tanggal_lahir', '$kota_tinggal', '$kota_lahir', '$phone', 'on', '$conn->insert_id')");
+    $insert_mahasiswa = $conn->query("INSERT INTO mahasiswa (nrp, nama, alamat, tanggal_lahir, kota_tinggal, kota_lahir, phone, status, id_user, total_sks, ips_terakhir, ipk) VALUES ('$nrp', '$nama', '$alamat', '$tanggal_lahir', '$kota_tinggal', '$kota_lahir', '$phone', 'Aktif', '$conn->insert_id', 0, 0, 0)");
 
     if ($password == $re_password) {
 

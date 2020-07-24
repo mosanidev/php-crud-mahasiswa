@@ -1,6 +1,6 @@
 <div id="content">
     <div class="content-header">
-        <p>Data Mahasiswa</p>
+        <p>Portal Mahasiswa</p>
     </div>
     <div class="content-button">
 
@@ -8,9 +8,9 @@
 
             if ($tipe == "mahasiswa") {
 
-                echo "<a href='index.php?page=transkip_nilai'>Lihat Transkip Nilai</a>";
+                echo "<a href='index.php?page=detail_mahasiswa'>Lihat Profil Saya</a>";
    
-            } else {
+            } else if ($tipe == "admin") {
 
                 echo "<a href='index.php?page=list_mahasiswa'>List Mahasiswa</a> 
                       <a href='index.php?page=list_mata_kuliah'>List Mata Kuliah</a>";
