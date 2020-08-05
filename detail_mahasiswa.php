@@ -1,7 +1,25 @@
 <?php
 
     extract($_GET);
+    include_once("function/hitung_ipk.php");
+    include_once("function/hitung_nisbi.php");
 
+    $sks = [];
+    $nisbi = [];
+    
+    $result_ipk_sks = $conn->query("SELECT sks, nisbi FROM mata_kuliah m INNER JOIN mata_kuliah_has_mahasiswa mm ON m.kode_mk = mm.mata_kuliah_kode_mk WHERE mm.mahasiswa_nrp=$nrp");
+
+    while($row=$result_ipk_sks->fetch_assoc()) {
+        array_push($sks, $row["sks"]);
+        array_push($nisbi, $row["nisbi"]);
+    }
+
+    $total_sks_updated = array_sum($sks);
+
+    $ipk_updated = hitung_ipk($sks, $nisbi);
+
+    $update_ipk_sks = $conn->query("UPDATE mahasiswa SET total_sks='$total_sks_updated', ipk='$ipk_updated' WHERE nrp='$nrp'");
+    
 ?>
 
 <div id="content-show">
@@ -44,13 +62,10 @@
             <hr>
         </div>
         <div class="group-info">
-            <p>Total SKS</p><p><?php echo $total_sks; ?></p>
+            <p>Total SKS</p><p><?php echo $total_sks_updated; ?></p>
         </div>
         <div class="group-info">
-            <p>IPS Terakhir</p><p><?php echo $ips_terakhir; ?></p>
-        </div>
-        <div class="group-info">
-            <p>IPK</p><p><?php echo $ipk; ?></p>
+            <p>IPK</p><p><?php echo $ipk_updated; ?></p>
         </div>
         <div class="group-info">
             <p>Status</p><p><?php echo $status; ?></p>
@@ -62,20 +77,20 @@
         </div>
         <div class="info-table">
 
-            <div class="tampil-jumlah-data">
+            <!-- <div class="tampil-jumlah-data">
                 <p>Menampilkan 
-                    <select name="jumlah_data">
+                    <select onchange="paging()" name="jumlah_data" id="jumlah_data">
                         <option value="10">10</option>
                         <option value="25">25</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
                     </select>
                 data</p>
-            </div>
+            </div> -->
 
             <?php  
                 if ($tipe == 'admin') {
-                    echo "<a class='btn-add2' href='index.php?page=tambah_mata_kuliah'>Tambah Mata Kuliah</a>"; 
+                    echo "<a class='btn-add2' href='index.php?page=tambah_kelas&nrp=$nrp'>Tambah Kelas</a>"; 
                 }
             ?>
 
@@ -92,8 +107,27 @@
                 </tr>
                 
                 <?php
-                    
-                    $result = $conn->query("SELECT kode_mk, nama, sks, nts, nas, nisbi FROM mata_kuliah m INNER JOIN mata_kuliah_has_mahasiswa mm ON m.kode_mk = mm.mata_kuliah_kode_mk WHERE mm.mahasiswa_nrp=$nrp");
+                    $halaman = 10;
+
+                    $page = isset($_GET['halaman']) ? $_GET['halaman'] : 1;
+
+                    $mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
+
+                    if ($page == "all") {
+
+                        $result = $conn->query("SELECT kode_mk, nama, sks, nts, nas, nisbi FROM mata_kuliah m INNER JOIN mata_kuliah_has_mahasiswa mm ON m.kode_mk = mm.mata_kuliah_kode_mk WHERE mm.mahasiswa_nrp=$nrp");
+
+                    } else {
+
+                        $result = $conn->query("SELECT kode_mk, nama, sks, nts, nas, nisbi FROM mata_kuliah m INNER JOIN mata_kuliah_has_mahasiswa mm ON m.kode_mk = mm.mata_kuliah_kode_mk WHERE mm.mahasiswa_nrp=$nrp LIMIT $mulai, $halaman");
+
+                    }
+
+                    $result_total_mk = $conn->query("SELECT * FROM mata_kuliah_has_mahasiswa WHERE mahasiswa_nrp=$nrp");
+
+                    $total = $result_total_mk->num_rows;
+
+                    $pages = ceil($total/$halaman);
 
                     $i = 0;
                     while($row=$result->fetch_assoc()){
@@ -108,14 +142,24 @@
                                 <td>$row[nas]</td>
                                 <td>$row[nisbi]</td>
                                 <td class='last-cell'>
-                                    <a href='detail_mata_kuliah.php'>detail</a>
+                                    <a href='index.php?page=ubah_nilai_kelas&kode_mk=$row[kode_mk]&nrp=$nrp&nts=$row[nts]&nas=$row[nas]&halaman=mahasiswa'>ubah nilai</a>
+                                    <a href='index.php?page=hapus_kelas&kode_mk=$row[kode_mk]&nrp=$nrp'>hapus</a>
                                 </td>
                             </tr>
                             ";
+                                  
                     }
-
                 ?>
                     
             </table>
+            <div class="pagination-bottom">
+                <?php 
+                    for ($i=1; $i<=$pages; $i++){ 
+                        echo "<a href='index.php?page=detail_mahasiswa&nrp=$nrp&nama=$nama&alamat=$alamat&tanggal_lahir=$tanggal_lahir&kota_tinggal=$kota_tinggal&kota_lahir=$kota_lahir&phone=$phone&status=$status&total_sks=$total_sks&ipk=$ipk&email=$email&halaman=$i'>$i</a>";
+                    }
+                    echo "<a href='index.php?page=detail_mahasiswa&nrp=$nrp&nama=$nama&alamat=$alamat&tanggal_lahir=$tanggal_lahir&kota_tinggal=$kota_tinggal&kota_lahir=$kota_lahir&phone=$phone&status=$status&total_sks=$total_sks&ipk=$ipk&email=$email&halaman=all'>Tampilkan Semua</a>";
+                 ?>
+            </div>
         </div>
     </div>
+</div>

@@ -59,17 +59,38 @@
                 else if ($page == "list_mata_kuliah") {
                     include_once("list_mata_kuliah.php");
                 }
+                else if ($page == "tambah_mata_kuliah") {
+                    include_once("tambah_mata_kuliah.php");
+                }
                 else if ($page == "tambah_mahasiswa") {
                     echo "tambah_mahasiswa";
                 }
                 else if ($page == "ubah_mahasiswa") {
-                    echo "ubah_mahasiswa";
+                    include_once("ubah_mahasiswa.php");
+                }
+                else if ($page == "ubah_mata_kuliah") {
+                    include_once("ubah_mata_kuliah.php");
                 }
                 else if ($page == "hapus_mahasiswa") {
                     echo "hapus_mahasiswa";
                 }
                 else if ($page == "detail_mahasiswa") {
                     include_once("detail_mahasiswa.php");
+                }
+                else if ($page == "detail_mata_kuliah") {
+                    include_once("detail_mata_kuliah.php");
+                }
+                else if ($page == "tambah_kelas") {
+                    include_once("tambah_kelas.php");
+                }
+                else if ($page == "ubah_nilai_kelas") {
+                    include_once("ubah_nilai_kelas.php");
+                }
+                else if ($page == "hapus_kelas") {
+                    include_once("hapus_kelas.php");
+                }
+                else if ($page == "tambah_mahasiswa_di_kelas") {
+                    include_once("tambah_mahasiswa_di_kelas.php");
                 }
                 else  {
                     echo "Maaf tidak ada file tersebut di server";
@@ -86,7 +107,33 @@
     </main>
     <footer>
         <hr>
-        <p>&copy; 2020 Website Mahasiswa</p> 
+        <p>&copy; 2020 Portal Mahasiswa</p> 
     </footer>
+    <script>
+        function generateSKS() {
+            var sks = document.getElementById('p-sks');
+
+            var mk = document.getElementById('select-mk');
+
+            var js_array =<?php echo json_encode($arr_mk);?>;
+
+            var kode_mk_select = mk.value.split(" - ")[0];
+
+            for (var i=0; i < js_array.length; i++) {
+                
+                var kode_mk_arr = js_array[i].split("-")[0];
+
+                if (kode_mk_select == kode_mk_arr) {
+
+                    sks.innerText = js_array[i].split("-")[1];
+
+                }
+            }
+        }
+
+        generateSKS();
+        
+    </script>
+
 </body>
 </html>

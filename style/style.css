@@ -76,9 +76,10 @@ div#content {
 
 div.content-header p {
     color: #000;
-    font-size: 60px;
+    font-size: 53px;
     text-align: center;
     padding: 80px 50px;
+    font-family: algerian;
 }
 
 div.content-button {
@@ -236,7 +237,7 @@ a.btn-add:hover {
     font-size: 17px;
 }
 
-.content-list-table td.last-cell a {
+.content-list-table td.last-cell a, .info-table a {
     margin-right: 8px;
 }
 
@@ -269,7 +270,6 @@ a.btn-add:hover {
 
 .tampil-jumlah-data {
     display:inline-block;
-    /* margin: 5px 1px; */
     float:left;
     padding: 9px;
 }
@@ -284,4 +284,65 @@ a.btn-add2 {
     display: inline-block;
     float: right;
     font-size: 14px;
+}
+
+.group-info input[type=text] {
+    margin-left: -5px;
+    width: 220px;
+}
+
+.group-info .label-alamat {
+    float: left;
+}
+
+.content-show-data button {
+    margin-left: 212px;
+    padding: 5px 20px
+}
+
+.content-show-data button:hover {
+    cursor: pointer;
+}
+
+.group-info textarea {
+    width: 220px;
+}
+
+.group-info select {
+    width: 350px;
+    margin-left: -5px;
+}
+
+p#p-sks {
+    margin-left: -5px;
+}
+
+div.pagination-bottom {
+    width: 97.8%;
+    padding: 0 7px;
+    margin: 0px auto;
+    background-color: #000;
+    text-align: center;
+    height: 45px;
+}
+
+div.pagination-bottom a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #000;
+    display: inline-block;
+    margin: 8.5px;
+    padding: 0px 8px;
+    background-color: #f2f4f7;
+    border-radius: 3px;
+}
+
+div.pagination-bottom a:hover {
+    text-decoration: underline;
+}
+
+div.pagination-bottom p {
+    float: left;
+    color: #fefefe;
+    padding: 3px;
 }

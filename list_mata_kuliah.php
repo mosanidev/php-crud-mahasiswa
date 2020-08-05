@@ -41,7 +41,8 @@
                             <td>$row[nama]</td>
                             <td>$row[sks]</td>
                             <td class='last-cell'>
-                                <a href='detail_mata_kuliah.php'>detail</a>
+                                <a href='index.php?page=detail_mata_kuliah&kode_mk=$row[kode_mk]&nama=$row[nama]&sks=$row[sks]'>detail</a>
+                                <a href='index.php?page=ubah_mata_kuliah&kode_mk=$row[kode_mk]&nama=$row[nama]&sks=$row[sks]'>ubah</a>
                             </td>
                           </tr>
                         ";

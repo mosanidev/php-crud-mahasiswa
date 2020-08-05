@@ -2,8 +2,8 @@
 
     include_once("function/koneksi.php");
 
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+    extract($_POST);
+
     $salt = "NnxjnsaLJDKnjn";
 
     $salted_password = md5($password.$salt);
