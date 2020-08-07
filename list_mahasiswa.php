@@ -3,14 +3,6 @@
         <p>List Mahasiswa</p>
     </div>
     <div class="content-list-table">
-        <p>Menampilkan 
-            <select name="jumlah_data">
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
-        data</p>
 
         <table>
             <tr>
@@ -21,8 +13,28 @@
             </tr>
             
             <?php
+                $halaman = 15;
+
+                $page = isset($_GET["halaman"]) ? $_GET["halaman"] : 1;
                 
-                $result = $conn->query("SELECT nrp, nama, alamat, tanggal_lahir, kota_tinggal, kota_lahir, phone, status, total_sks, ipk, email FROM mahasiswa m INNER JOIN user u ON m.id_user=u.iduser");
+                $mulai = ($page > 1) ? ($page * $halaman) - $halaman : 0;
+
+                if ($page == "all") {
+
+                    $result = $conn->query("SELECT nrp, nama, alamat, tanggal_lahir, kota_tinggal, kota_lahir, phone, status, total_sks, ipk, email FROM mahasiswa m INNER JOIN user u ON m.id_user=u.iduser");
+
+                } else {
+
+                    // sql output : return only 10 data start on record 11 
+                    $result = $conn->query("SELECT nrp, nama, alamat, tanggal_lahir, kota_tinggal, kota_lahir, phone, status, total_sks, ipk, email FROM mahasiswa m INNER JOIN user u ON m.id_user=u.iduser LIMIT $mulai, $halaman");
+
+                }
+
+                $result_total_mk = $conn->query("SELECT * FROM mahasiswa");
+
+                $total = $result_total_mk->num_rows;
+
+                $pages = ceil($total/$halaman);
 
                 $i = 0;
                 while($row=$result->fetch_assoc()){
@@ -60,5 +72,13 @@
             ?>
                 
         </table>
+        <div class="pagination-bottom-list">
+            <?php 
+                for ($i=1; $i<=$pages; $i++){ 
+                    echo "<a href='index.php?page=list_mahasiswa&halaman=$i'>$i</a>";
+                }
+                echo "<a href='index.php?page=list_mahasiswa&halaman=all'>Tampilkan Semua</a>";
+            ?>
+        </div>
     </div>
 </div>

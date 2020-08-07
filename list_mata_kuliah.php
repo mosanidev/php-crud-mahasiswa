@@ -3,14 +3,6 @@
         <p>List Mata Kuliah</p>
     </div>
     <div class="content-list-table">
-        <p>Menampilkan 
-            <select name="jumlah_data">
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
-        data</p>
 
         <?php 
             if ($user_id) {
@@ -28,8 +20,27 @@
             </tr>
             
             <?php
+                $halaman = 15;
+
+                $page = isset($_GET["halaman"]) ? $_GET["halaman"] : 1;
                 
-                $result = $conn->query("SELECT * FROM mata_kuliah");
+                $mulai = ($page > 1) ? ($page * $halaman) - $halaman : 0;
+
+                if ($page == "all") {
+
+                    $result = $conn->query("SELECT * FROM mata_kuliah");
+
+                } else {
+
+                    $result = $conn->query("SELECT * FROM mata_kuliah LIMIT $mulai, $halaman");
+
+                }
+
+                $result_total_mk = $conn->query("SELECT * FROM mata_kuliah");
+
+                $total = $result_total_mk->num_rows;
+
+                $pages = ceil($total/$halaman);
 
                 $i = 0;
                 while($row=$result->fetch_assoc()){
@@ -51,5 +62,13 @@
             ?>
                 
         </table>
+        <div class="pagination-bottom-list">
+            <?php 
+                for ($i=1; $i<=$pages; $i++){ 
+                    echo "<a href='index.php?page=list_mata_kuliah&halaman=$i'>$i</a>";
+                }
+                echo "<a href='index.php?page=list_mata_kuliah&halaman=all'>Tampilkan Semua</a>";
+            ?>
+        </div>
     </div>
 </div>

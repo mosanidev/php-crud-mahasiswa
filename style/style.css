@@ -7,9 +7,7 @@
 
 body {
     background-color: #f2f4f7;
-    position: relative;
-    padding-bottom: 20px;
-    min-height: calc(100vh - 1vh);
+    height: 100%;
 }
 
 div#keterangan {
@@ -170,14 +168,14 @@ form button:hover {
 }
 
 .content-list-table, .content-show-data {
-    padding: 20px;
+    padding: 10px;
 }
 
 .content-list-table table, .info-table table {
-    margin-top: 20px;
+    margin-top: 10px;
     width: 100%;
     text-align: left;
-/*     border-collapse: collapse; */
+    /*     border-collapse: collapse; */
 }
 
 .content-list-table th, .info-table th {
@@ -342,6 +340,36 @@ div.pagination-bottom a:hover {
 }
 
 div.pagination-bottom p {
+    float: left;
+    color: #fefefe;
+    padding: 3px;
+}
+
+div.pagination-bottom-list {
+    width: 98.7%;
+    padding: 0 7px;
+    margin: 0px auto;
+    background-color: #000;
+    text-align: center;
+    height: 45px;
+}
+
+div.pagination-bottom-list a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #000;
+    display: inline-block;
+    margin: 8.5px;
+    padding: 0px 8px;
+    background-color: #f2f4f7;
+    border-radius: 3px;
+}
+
+div.pagination-bottom-list a:hover {
+    text-decoration: underline;
+}
+
+div.pagination-bottom-list p {
     float: left;
     color: #fefefe;
     padding: 3px;

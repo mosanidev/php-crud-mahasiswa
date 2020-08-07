@@ -40,75 +40,73 @@
         </nav>
     </header>
     <main>
-        
-        <?php  
+        <div class="wrapper">
+            <?php  
 
-            $file = $page.".php";
-            
-            if (file_exists($file)) {
+                $file = $page.".php";
+                
+                if (file_exists($file)) {
 
-                if ($page == "login") {
-                    include_once("login.php");
-                } 
-                else if ($page == "register") {
-                    include_once("register.php");
-                } 
-                else if ($page == "list_mahasiswa") {
-                    include_once("list_mahasiswa.php");
-                }
-                else if ($page == "list_mata_kuliah") {
-                    include_once("list_mata_kuliah.php");
-                }
-                else if ($page == "tambah_mata_kuliah") {
-                    include_once("tambah_mata_kuliah.php");
-                }
-                else if ($page == "tambah_mahasiswa") {
-                    echo "tambah_mahasiswa";
-                }
-                else if ($page == "ubah_mahasiswa") {
-                    include_once("ubah_mahasiswa.php");
-                }
-                else if ($page == "ubah_mata_kuliah") {
-                    include_once("ubah_mata_kuliah.php");
-                }
-                else if ($page == "hapus_mahasiswa") {
-                    echo "hapus_mahasiswa";
-                }
-                else if ($page == "detail_mahasiswa") {
-                    include_once("detail_mahasiswa.php");
-                }
-                else if ($page == "detail_mata_kuliah") {
-                    include_once("detail_mata_kuliah.php");
-                }
-                else if ($page == "tambah_kelas") {
-                    include_once("tambah_kelas.php");
-                }
-                else if ($page == "ubah_nilai_kelas") {
-                    include_once("ubah_nilai_kelas.php");
-                }
-                else if ($page == "hapus_kelas") {
-                    include_once("hapus_kelas.php");
-                }
-                else if ($page == "tambah_mahasiswa_di_kelas") {
-                    include_once("tambah_mahasiswa_di_kelas.php");
-                }
-                else  {
-                    echo "Maaf tidak ada file tersebut di server";
+                    if ($page == "login") {
+                        include_once("login.php");
+                    } 
+                    else if ($page == "register") {
+                        include_once("register.php");
+                    } 
+                    else if ($page == "list_mahasiswa") {
+                        include_once("list_mahasiswa.php");
+                    }
+                    else if ($page == "list_mata_kuliah") {
+                        include_once("list_mata_kuliah.php");
+                    }
+                    else if ($page == "tambah_mata_kuliah") {
+                        include_once("tambah_mata_kuliah.php");
+                    }
+                    else if ($page == "tambah_mahasiswa") {
+                        echo "tambah_mahasiswa";
+                    }
+                    else if ($page == "ubah_mahasiswa") {
+                        include_once("ubah_mahasiswa.php");
+                    }
+                    else if ($page == "ubah_mata_kuliah") {
+                        include_once("ubah_mata_kuliah.php");
+                    }
+                    else if ($page == "hapus_mahasiswa") {
+                        echo "hapus_mahasiswa";
+                    }
+                    else if ($page == "detail_mahasiswa") {
+                        include_once("detail_mahasiswa.php");
+                    }
+                    else if ($page == "detail_mata_kuliah") {
+                        include_once("detail_mata_kuliah.php");
+                    }
+                    else if ($page == "tambah_kelas") {
+                        include_once("tambah_kelas.php");
+                    }
+                    else if ($page == "ubah_nilai_kelas") {
+                        include_once("ubah_nilai_kelas.php");
+                    }
+                    else if ($page == "hapus_kelas") {
+                        include_once("hapus_kelas.php");
+                    }
+                    else if ($page == "tambah_mahasiswa_di_kelas") {
+                        include_once("tambah_mahasiswa_di_kelas.php");
+                    }
+                    else  {
+                        echo "Maaf tidak ada file tersebut di server";
+                    }
+                    
+                } else {
+
+                    // default home page 
+                    include_once("home.php");
+                    include_once("footer.php");
                 }
                 
-            } else {
 
-                // default home page 
-                include_once("home.php");
-            }
-            
-
-        ?>
+            ?>
+        </div>
     </main>
-    <footer>
-        <hr>
-        <p>&copy; 2020 Portal Mahasiswa</p> 
-    </footer>
     <script>
         function generateSKS() {
             var sks = document.getElementById('p-sks');

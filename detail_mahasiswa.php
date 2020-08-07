@@ -77,17 +77,6 @@
         </div>
         <div class="info-table">
 
-            <!-- <div class="tampil-jumlah-data">
-                <p>Menampilkan 
-                    <select onchange="paging()" name="jumlah_data" id="jumlah_data">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                data</p>
-            </div> -->
-
             <?php  
                 if ($tipe == 'admin') {
                     echo "<a class='btn-add2' href='index.php?page=tambah_kelas&nrp=$nrp'>Tambah Kelas</a>"; 
@@ -119,6 +108,7 @@
 
                     } else {
 
+                        // sql output : return only 10 data start on record 11 
                         $result = $conn->query("SELECT kode_mk, nama, sks, nts, nas, nisbi FROM mata_kuliah m INNER JOIN mata_kuliah_has_mahasiswa mm ON m.kode_mk = mm.mata_kuliah_kode_mk WHERE mm.mahasiswa_nrp=$nrp LIMIT $mulai, $halaman");
 
                     }

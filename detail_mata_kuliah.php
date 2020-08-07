@@ -30,17 +30,6 @@
         </div>
         <div class="info-table">
 
-            <!-- <div class="tampil-jumlah-data">
-                <p>Menampilkan 
-                    <select name="jumlah_data">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                data</p>
-            </div> -->
-
             <?php  
                 if ($tipe == 'admin') {
                     echo "<a class='btn-add2' href='index.php?page=tambah_mahasiswa_di_kelas&kode_mk=$kode_mk'>Tambah Mahasiswa</a>"; 
@@ -59,8 +48,28 @@
                 </tr>
                 
                 <?php
-                    
-                    $result = $conn->query("SELECT mata_kuliah_kode_mk, mahasiswa_nrp, nama, nts, nas, nisbi FROM mata_kuliah_has_mahasiswa mm INNER JOIN mahasiswa m ON mm.mahasiswa_nrp=m.nrp WHERE mm.mata_kuliah_kode_mk='$kode_mk'");
+                    $halaman = 10;
+
+                    $page = isset($_GET['halaman']) ? $_GET['halaman'] : 1;
+
+                    $mulai = ($page > 1) ? ($page * $halaman) - $halaman : 0;
+
+                    if ($page == "all") {
+
+                        $result = $conn->query("SELECT mata_kuliah_kode_mk, mahasiswa_nrp, nama, nts, nas, nisbi FROM mata_kuliah_has_mahasiswa mm INNER JOIN mahasiswa m ON mm.mahasiswa_nrp=m.nrp WHERE mm.mata_kuliah_kode_mk='$kode_mk'");
+
+                    } else  {
+
+                        // sql output : return only 10 data start on record 11
+                        $result = $conn->query("SELECT mata_kuliah_kode_mk, mahasiswa_nrp, nama, nts, nas, nisbi FROM mata_kuliah_has_mahasiswa mm INNER JOIN mahasiswa m ON mm.mahasiswa_nrp=m.nrp WHERE mm.mata_kuliah_kode_mk='$kode_mk' LIMIT $mulai, $halaman");
+
+                    }
+
+                    $result_total_mk = $conn->query("SELECT * FROM mata_kuliah_has_mahasiswa WHERE mata_kuliah_kode_mk='$kode_mk'");
+
+                    $total = $result_total_mk->num_rows;
+
+                    $pages = ceil($total/$halaman);
 
                     $i = 0;
                     while($row=$result->fetch_assoc()){
@@ -84,5 +93,14 @@
                 ?>
                     
             </table>
+            <div class="pagination-bottom">
+                <?php 
+                    for ($i=1; $i<=$pages; $i++){ 
+                        echo "<a href='index.php?page=detail_mata_kuliah&kode_mk=$kode_mk&nama=$nama&sks=$sks&halaman=$i'>$i</a>";
+                    }
+                    echo "<a href='index.php?page=detail_mata_kuliah&kode_mk=$kode_mk&nama=$nama&sks=$sks&halaman=all'>Tampilkan Semua</a>";
+                 ?>
+            </div>
         </div>
     </div>
+</div>
