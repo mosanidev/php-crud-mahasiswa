@@ -4,9 +4,9 @@
 
     extract($_POST);
 
-    $result1 = $conn->query("UPDATE mata_kuliah SET kode_mk='$kode_mk_baru', nama='$nama', sks='$sks' WHERE kode_mk='$kode_mk'");
+    $result1 = $conn->query("UPDATE mata_kuliah SET nama='$nama', sks='$sks' WHERE kode_mk='$kode_mk'");
 
-    $result2 = $conn->query("SELECT kode_mk, nama, sks FROM mata_kuliah where kode_mk='$kode_mk_baru'");
+    $result2 = $conn->query("SELECT kode_mk, nama, sks FROM mata_kuliah where kode_mk='$kode_mk'");
 
     $row = $result2->fetch_assoc();
 

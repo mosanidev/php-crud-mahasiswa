@@ -92,7 +92,7 @@
                     <th>NTS</th>
                     <th>NAS</th>
                     <th>Nisbi</th>
-                    <th>Action</th>
+                    <?php if ($tipe == "admin") { echo "<th>Action</th>"; } ?>
                 </tr>
                 
                 <?php
@@ -122,8 +122,10 @@
                     $i = 0;
                     while($row=$result->fetch_assoc()){
                         $i += 1;
+                        
+                        if ($tipe == "admin") {
 
-                        echo "<tr>
+                            echo "<tr>
                                 <td>$i</td>
                                 <td>$row[kode_mk]</td>
                                 <td>$row[nama]</td>
@@ -133,10 +135,27 @@
                                 <td>$row[nisbi]</td>
                                 <td class='last-cell'>
                                     <a href='index.php?page=ubah_nilai_kelas&kode_mk=$row[kode_mk]&nrp=$nrp&nts=$row[nts]&nas=$row[nas]&halaman=mahasiswa'>ubah nilai</a>
-                                    <a href='index.php?page=hapus_kelas&kode_mk=$row[kode_mk]&nrp=$nrp'>hapus</a>
+                                    <a href='index.php?page=hapus_kelas&kode_mk=$row[kode_mk]&nrp=$nrp&halaman=mahasiswa'>hapus</a>
                                 </td>
                             </tr>
                             ";
+
+
+                        } else if ($tipe == "mahasiswa") {
+
+                            echo "<tr>
+                                    <td>$i</td>
+                                    <td>$row[kode_mk]</td>
+                                    <td>$row[nama]</td>
+                                    <td>$row[sks]</td>
+                                    <td>$row[nts]</td>
+                                    <td>$row[nas]</td>
+                                    <td class='last-cell2'>$row[nisbi]</td>
+                                  </tr>
+                                 ";
+
+                        }
+                        
                                   
                     }
                 ?>

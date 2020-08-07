@@ -4,7 +4,7 @@
 
         $na = 0.4*$nts+0.6*$nas;
         
-        if ($na > 81) {
+        if ($na >= 81) {
 
             return "A";
 

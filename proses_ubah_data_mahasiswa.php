@@ -12,7 +12,7 @@
 
     if ($result1 == 1) {
     
-        header("location: "."/mahasiswa/index.php?page=detail_mahasiswa&nrp=$row[nrp]&nama=$row[nama]&alamat=$row[alamat]&tanggal_lahir=$row[tanggal_lahir]&kota_tinggal=$row[kota_tinggal]&kota_lahir=$row[kota_lahir]&phone=$row[phone]&status=$row[status]&total_sks=$row[total_sks]&ipk=$row[ipk]&email=$row[email]'");
+        header("location: "."/mahasiswa/index.php?page=detail_mahasiswa&nrp=$row[nrp]&nama=$row[nama]&alamat=$row[alamat]&tanggal_lahir=$row[tanggal_lahir]&kota_tinggal=$row[kota_tinggal]&kota_lahir=$row[kota_lahir]&phone=$row[phone]&status=$row[status]&total_sks=$row[total_sks]&ipk=$row[ipk]&email=$row[email]");
 
     } else {
         echo "Perubahan gagal terjadi karena ".$conn->error;

@@ -16,9 +16,8 @@
                 <hr>
             </div>
             <div class="group-info">
-                <p>Kode MK</p><p>
+                <p>Kode MK</p><p><?php echo $kode_mk; ?></p>
                 <input type="hidden" value="<?php echo $kode_mk; ?>" name="kode_mk">
-                <input type="text" value="<?php echo $kode_mk; ?>" name="kode_mk_baru">
             </div>
             <div class="group-info">
                 <p>Nama</p><p>

@@ -201,6 +201,10 @@ form button:hover {
     text-align: center;
 }
 
+.last-cell2 {
+    border-right: 1.5px solid black;
+}
+
 .notif{
     margin-top: 20px;
     text-align: center;
